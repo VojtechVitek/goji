@@ -3,6 +3,7 @@ package web
 import (
 	"log"
 	"net/http"
+	"reflect"
 	"sort"
 	"strings"
 	"sync"
@@ -80,7 +81,7 @@ func parseHandler(h interface{}) Handler {
 		log.Fatalf("Unknown handler type %v. Expected a web.Handler, "+
 			"a http.Handler, or a function with signature func(C, "+
 			"http.ResponseWriter, *http.Request) or "+
-			"func(http.ResponseWriter, *http.Request)", h)
+			"func(http.ResponseWriter, *http.Request)", reflect.TypeOf(f))
 	}
 	panic("log.Fatalf does not return")
 }
